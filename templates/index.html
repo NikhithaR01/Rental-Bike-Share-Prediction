@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body, html {
+            height: 100%;
+        }
+        body {
+            background-image: url({{ url_for('static', filename='img/cycle1.jpg') }});
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        form{
+            text-align: right;
+            padding-right: 60px;
+            padding-bottom: 75px;
+        }
+        input{
+            width: 10%
+        }
+
+        select{
+            width: 10%
+        }
+
+        button{
+            background-color: rgb(45, 27, 97);
+            color: white;
+            width: 15%
+        }
+
+        label{
+            color: rgb(46, 20, 90);
+            font-size: 20px;
+            display: inline-block;
+            text-align: right;
+            width: 300px
+        }
+
+        label:hover{
+            color: red;
+              background-color: transparent;
+              text-decoration: underline;
+        }
+        
+    </style>
+    <title>Boom Bikes - API</title>
+</head>
+
+<body>
+ <div class="login">
+    <button onclick="location.href = '/';" id="myButton" class="a" >Home</button>
+    <center><h1 style="color:#000000">Rental Bike Share Prediction</h1></center>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+        <b><label for="wea">Weather</label></b>
+        <select id="wea" name="weather">
+            <option value="1">Clear/ Few clouds/ Partly cloudy</option>
+            <option value="2">Mist and Cloudy/ Mist and Broken clouds/ Mist and Few clouds/ Mist</option>
+            <option value="3">Light Snow/ Light Rain, Thunderstorm and Scattered clouds/ Light Rain and Scattered clouds</option>
+            <option value="4">Heavy Rain, Ice Pallets, Thunderstorm and Mist/ Snow and Fog</option>
+        </select>
+        <br></br>
+
+        <b><label for="season">Season</label></b>
+        <select id="season" name="Seasons">
+            <option value="1">Spring</option>
+            <option value="2">Summer</option>
+            <option value="3">Fall</option>
+            <option value="4">Winter</option>
+        </select>
+        <br></br>
+
+        <b><label for="temperature">Temperature</label></b>
+        <input type="text" id="temperature" name="temp", required="required", placeholder="Temperature">
+        <br></br>
+
+        <b><label for="humidity">Humidity</label></b>
+        <input type="text" id="humidity" name="hum", required="required", placeholder="Humidity">
+        <br></br>
+
+        <b><label for="mon">Month</label></b>
+        <select id="mon" name="Month">
+            <option value="1">Jan</option>
+            <option value="2">Feb</option>
+            <option value="3">Mar</option>
+            <option value="4">Apr</option>
+            <option value="5">May</option>
+            <option value="6">Jun</option>
+            <option value="7">Jul</option>
+            <option value="8">Aug</option>
+            <option value="9">Sep</option>
+            <option value="10">Oct</option>
+            <option value="11">Nov</option>
+            <option value="12">Dec</option>
+        </select>
+        <br></br>        
+  
+
+        <b><label for="Windspeed">Windspeed</label></b>
+        <input type="text" id="Windspeed" name="windspeed", required="required", placeholder="Windspeed">
+        <br></br>
+
+        <b><label for="year">Past or Future</label></b>
+        <select id="year" name="yr">
+            
+            <option value="1">2011</option>
+            <option value="0">2012</option>
+        </select>
+        <br></br>
+
+        <b><label for="holiday">Is it holiday?</label></b>
+        <select id="holiday" name="holiday">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+        <br></br>
+
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        <h1><b><center><font color:red size="7">{{ prediction_text }}</font></center></b></h1>
+    </form>s
+     <br>
+   
+
+    </div>
+</body>
+</html>
